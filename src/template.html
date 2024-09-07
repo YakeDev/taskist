@@ -7,47 +7,132 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
-    <title>Document</title>
+    <title>Taskist::YakeDev</title>
   </head>
   <body>
     <div id="app">
       <nav id="navBar">
-        <div id="logo-container"><h1 id="app-logo">Taskist</h1></div>
-        <div class="navBar-content">
-          <div class="navBar-taskFilter">
-            <ul>
-              <li class="navbar-addTask add-task">
-                <i class="bi bi-plus-square-fill"></i> Add new task
-              </li>
-              <li><i class="bi bi-calendar-date"></i> Today</li>
-              <li><i class="bi bi-card-list"></i> All task</li>
-              <li><i class="bi bi-card-checklist"></i> Done task</li>
-              <li><i class="bi bi-archive"></i> All project</li>
-            </ul>
-          </div>
-          <div class="navBar-projectList">
-            <div class="navBar-projectList-title">
-              <h4>My projects</h4>
-            </div>
-            <div class="navbar-projects">
+        <div class="nav-container">
+          <div id="logo-container"><h1 id="app-logo">To Do List</h1></div>
+          <div class="navBar-content">
+            <div class="navBar-taskFilter">
               <ul>
-                <li><i class="bi bi-folder2"></i> Default</li>
-                <li><i class="bi bi-folder2"></i> Personal</li>
-                <li><i class="bi bi-folder2"></i> Work</li>
+                <li class="navbar-addTask add-task" id="nav-addTask">
+                  <i class="bi bi-plus-square-fill"></i> Add new task
+                  <!-- </li>
+                <li><i class="bi bi-calendar-date"></i> Today</li> -->
+                </li>
+
+                <li id="show-all-tasks-btn">
+                  <i class="bi bi-card-list"></i> All task
+                  <!-- </li>
+                <li><i class="bi bi-card-checklist"></i> Done task</li> -->
+                </li>
+
+                <li id="show-all-project">
+                  <i class="bi bi-archive"></i> All project
+                </li>
               </ul>
             </div>
+            <div class="navBar-projectList">
+              <div class="navBar-projectList-title" id="ek-create-project">
+                <h4>My projects</h4>
+                <span><i class="bi bi-plus-lg"></i></span>
+              </div>
+              <div class="navbar-projects">
+                <ul id="nav-projectList">
+                  <!-- <li><i class="bi bi-folder2"></i> Default</li>
+                  <li><i class="bi bi-folder2"></i> Personal</li>
+                  <li><i class="bi bi-folder2"></i> Work</li> -->
+                </ul>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="navBar-Footer">
-          <p>Developed by <a href="mailto:erickay.dev@gmail.com">YakeDev</a></p>
+          <div class="navBar-Footer">
+            <p>
+              Developed by <a href="mailto:erickay.dev@gmail.com">YakeDev</a>
+            </p>
+          </div>
         </div>
       </nav>
       <main>
+        <!-- The task Popup -->
+        <div id="popupForm" class="popup">
+          <div class="popup-content">
+            <span class="close-btn">&times;</span>
+            <h2>Add New Task</h2>
+            <form id="taskForm">
+              <label for="taskTitle">Task name:</label>
+              <input type="text" id="taskTitle" name="taskTitle" required />
+
+              <label for="taskDescription">Description:</label>
+              <textarea
+                id="taskDescription"
+                name="taskDescription"
+                required
+              ></textarea>
+
+              <div class="input-container">
+                <div class="input-second">
+                  <label for="projectList">Project:</label>
+                  <select id="projectList" name="projectList"></select>
+                </div>
+                <div class="input-third">
+                  <label for="taskPriority">Priority:</label>
+                  <select id="taskPriority" name="taskPriority" required>
+                    <option value="Priority 1">Priority 1</option>
+                    <option value="Priority 2">Priority 2</option>
+                    <option value="Priority 3">Priority 3</option>
+                    <option value="Priority 4">Priority 4</option>
+                  </select>
+                </div>
+                <div class="input-first">
+                  <label for="taskDueDate">Due Date:</label>
+                  <input
+                    type="date"
+                    id="taskDueDate"
+                    name="taskDueDate"
+                    required
+                  />
+                </div>
+              </div>
+
+              <button id="task-btn" type="submit">Add Task</button>
+            </form>
+          </div>
+        </div>
+        <!-- fin pop up -->
+        <!-- Project popup -->
+        <div id="pro-popupForm" class="pro-popup">
+          <div class="pro-popup-content">
+            <span class="pro-close-btn">&times;</span>
+            <h2>Add New Project</h2>
+            <form id="pro-projectForm">
+              <label for="pro-projectTitle">Project name:</label>
+              <input
+                type="text"
+                id="pro-projectTitle"
+                name="pro-projectTitle"
+                required
+              />
+
+              <label for="pro-projectDescription">Description:</label>
+              <textarea
+                id="pro-projectDescription"
+                name="pro-projectDescription"
+              ></textarea>
+
+              <button id="project-btn" type="submit">Add Project</button>
+            </form>
+          </div>
+        </div>
+        <!-- Fin Project popup -->
+
         <div id="content">
           <div class="main-header">
-            <h1 class="header-title">Header Title</h1>
+            <h1 class="header-title" id="page-header-title">All Task</h1>
             <div class="">
-              <button class="add-task">
+              <button class="add-task" id="add-new-task-btnTop">
                 <i class="bi bi-plus-lg"></i> Add new task
               </button>
             </div>
@@ -60,39 +145,8 @@
                     <div class="task-name-container">
                       <label class="circular-checkbox">
                         <input type="checkbox" />
-                        <span class="task-name">Task Name 01</span>
-                      </label>
-                      <p class="task-due-date">
-                        <i class="bi bi-calendar2-event"></i> Sept 12
-                      </p>
-                    </div>
-                  </div>
-                  <div class="task-top-right">
-                    <i class="bi bi-pencil-square"> </i>
-                    <i class="bi bi-x-circle"></i>
-                  </div>
-                </div>
-                <div class="task-bottom">
-                  <p class="task-description">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Eaque consectetur quibusdam, ipsum, quidem rerum id tempora
-                    eum atque suscipit
-                  </p>
-                  <p class="task-project">
-                    <span class="task-label"
-                      ><i class="bi bi-folder2"></i> Default</span
-                    >
-                  </p>
-                </div>
-              </div>
-              <div class="main-task-item">
-                <div class="task-top">
-                  <div class="task-top-left">
-                    <div class="task-name-container">
-                      <label class="circular-checkbox">
-                        <input type="checkbox" />
                         <span></span>
-                        <span class="task-name">Task Name 02</span>
+                        <span class="task-name">Default Task</span>
                       </label>
                       <p class="task-due-date">
                         <i class="bi bi-calendar2-event"></i> Sept 12
@@ -106,20 +160,21 @@
                 </div>
                 <div class="task-bottom">
                   <p class="task-description">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Eaque consectetur quibusdam, ipsum, quidem rerum id tempora
-                    eum atque suscipit
+                    Please delete this task, it is just to show you an example
                   </p>
                   <p class="task-project">
-                    <span class="task-label"
-                      ><i class="bi bi-folder2"></i> Default</span
+                    <span class="task-label" id="project-label">
+                      <i class="bi bi-folder2"></i> Default</span
+                    >
+                    <span class="task-label" id="task-priority">
+                      <i class="bi bi-flag"></i> Priority 4</span
                     >
                   </p>
                 </div>
               </div>
             </div>
             <div class="main-task-btn-container">
-              <button class="add-task">
+              <button class="add-task" id="add-new-task-btnBottom">
                 <i class="bi bi-plus-lg"></i> Add new task
               </button>
             </div>

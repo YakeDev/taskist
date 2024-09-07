@@ -1,12 +1,18 @@
-// greeting.js
 export class Task {
-  constructor(id, title, description, dueDate, priority, checkList = false) {
-    this.id = id;
+  constructor(
+    title,
+    description,
+    dueDate,
+    priority,
+    project,
+    checkList = false
+  ) {
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority;
-    this.checkList = checkList;
+    this.project = project;
+    this.checkList = checkList; // Par défaut non complété
   }
 
   taskCheck() {
