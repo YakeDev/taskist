@@ -182,9 +182,11 @@ export class Project {
     document.querySelector(".main-task-list").appendChild(taskItem);
   }
 
-  removeTask(taskId) {
-    this.tasks = this.tasks.filter((task) => task.id !== taskId);
+  removeTask(taskName) {
+    this.tasks = this.tasks.filter((task) => task.id !== taskName);
   }
+
+  editTask(taskName) {}
 
   getTasks() {
     return this.tasks;
